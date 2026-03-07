@@ -60,6 +60,16 @@ CREATE DATABASE product;
 
 Create tables for **category** and **product**.
 
+### OR
+## Database Setup
+
+Import the file `database.sql` into MySQL.
+
+It will create:
+- category table
+- product table
+- sample data
+
 ### 4. Run the server
 
 node app.js
