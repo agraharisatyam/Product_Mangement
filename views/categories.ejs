@@ -49,7 +49,7 @@
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" href="/categories/add">
+          <a class="nav-link" href="/categories/new">
             Add Category
           </a>
         </li>
@@ -61,7 +61,7 @@
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" href="/products/add">
+          <a class="nav-link" href="/products/new">
             Add Product
           </a>
         </li>
@@ -81,12 +81,12 @@
     <div class="d-flex justify-content-between align-items-center mb-3">
         <h2 class="mb-0">Category List</h2>
 
-        <a href="/categories/add" class="btn btn-primary">
+        <a href="/categories/new" class="btn btn-primary">
             + Add Category
         </a>
     </div>
 
-    <div class="card shadow-sm">
+    <div class="card shadow-sm ">
 
         <div class="table-responsive">
 
@@ -98,6 +98,9 @@
                         <th>ID</th>
                         <th>Name</th>
                         <th style="width:180px;">Action</th>
+                        <th style="width:180px;">Action</th>
+
+                        
                     </tr>
 
                 </thead>
@@ -112,17 +115,20 @@
 
                         <td><%= c.name %></td>
 
-                        <td>
+                        <td >
 
-                            <a href="/categories/edit/<%= c.id %>" class="btn btn-sm btn-warning">
+
+                            <a href="/categories/<%= c.id %>/edit" class="btn btn-sm btn-warning">
                                 Edit
                             </a>
-                            
                          
-                            <a href="/categories/delete/<%= c.id %>" class="btn btn-sm btn-danger">
-                                Delete
-                            </a>
+                           
 
+                        </td>
+                        <td>
+                            <form action="/categories/<%= c.id %>?_method=DELETE" method="POST">
+<button class="btn btn-danger">Delete</button>
+</form>
                         </td>
 
                     </tr>

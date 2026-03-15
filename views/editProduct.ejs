@@ -49,7 +49,7 @@
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" href="/categories/add">
+          <a class="nav-link" href="/categories/new">
             Add Category
           </a>
         </li>
@@ -61,7 +61,7 @@
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" href="/products/add">
+          <a class="nav-link" href="/products/new">
             Add Product
           </a>
         </li>
@@ -90,7 +90,7 @@
 
                 <div class="card-body">
 
-                    <form action="/products/update/<%= product.id %>" method="POST">
+                    <form action="/products/<%= product.id %>?_method=PATCH" method="POST">
 
                         <div class="mb-3">
                             <label class="form-label">Product Name</label>
