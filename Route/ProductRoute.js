@@ -1,23 +1,23 @@
 const express = require("express");
 const router = express.Router();
-const controller = require("../Controller/ProductController");
+const{list,addForm,create,editForm,deleteList, updateList} = require("../Controller/ProductController");
 
 // show products
-router.get("/", controller.list);
+router.get("/",list);
 
 // show add form
-router.get("/new", controller.addForm);
+router.get("/new", addForm);
 
 // create product
-router.post("/", controller.create);
+router.post("/", create);
 
 // show edit form
-router.get("/:id/edit", controller.editForm);
+router.get("/:id/edit", editForm);
 
 // update product
-router.patch("/:id", controller.update);
+router.patch("/:id", updateList);
 
 // delete product
-router.delete("/:id", controller.delete);
+router.delete("/:id",deleteList);
 
 module.exports = router;

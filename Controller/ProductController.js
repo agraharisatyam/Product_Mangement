@@ -1,4 +1,4 @@
-const productModel = require('../Model/Product');
+const {getCategories,create,getAll,getById,getTotal,update,deleteById} = require('../Model/Product');
 
 exports.list = (req,res)=>{
 
@@ -6,9 +6,9 @@ exports.list = (req,res)=>{
     const limit = 10;
     const offset = (page - 1) * limit;
 
-    productModel.getAll(limit,offset,(err,data)=>{
+    getAll(limit,offset,(err,data)=>{
 
-        productModel.getTotal((err,result)=>{
+            getTotal((err,result)=>{
 
             const totalProducts = result[0].total;
             const totalPages = Math.ceil(totalProducts / limit);
@@ -28,7 +28,7 @@ exports.list = (req,res)=>{
 
 exports.addForm = (req,res)=>{
 
-    productModel.getCategories((err,categories)=>{
+    getCategories((err,categories)=>{
         res.render("addProduct",{categories:categories});
     });
 
@@ -36,12 +36,9 @@ exports.addForm = (req,res)=>{
 
 exports.create = (req,res)=>{
 
-    const data = {
-        name:req.body.name,
-        category_id:req.body.category_id
-    };
+    const data = { name:req.body.name, category_id:req.body.category_id};
 
-    productModel.create(data,()=>{
+    create(data,()=>{
         res.redirect("/products");
     });
 
@@ -51,9 +48,9 @@ exports.editForm = (req,res)=>{
 
     const id = req.params.id;
 
-    productModel.getById(id,(err,data)=>{
+    getById(id,(err,data)=>{
 
-        productModel.getCategories((err,categories)=>{
+        getCategories((err,categories)=>{
 
             res.render("editProduct",{
                 product:data[0],
@@ -66,7 +63,7 @@ exports.editForm = (req,res)=>{
 
 };
 
-exports.update = (req,res)=>{
+exports.updateList = (req,res)=>{
 
     const id = req.params.id;
 
@@ -75,17 +72,17 @@ exports.update = (req,res)=>{
         category_id:req.body.category_id
     };
 
-    productModel.update(id,data,()=>{
+        update(id,data,()=>{
         res.redirect("/products");
     });
 
 };
 
-exports.delete = (req,res)=>{
+exports.deleteList = (req,res)=>{
 
     const id = req.params.id;
 
-    productModel.delete(id,()=>{
+    deleteById(id,()=>{
         res.redirect("/products");
     });
 

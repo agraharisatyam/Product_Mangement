@@ -18,7 +18,10 @@ LIMIT ? OFFSET ?
     db.query(sql,[limit,offset],callback);
 };
 exports.getTotal = (callback)=>{
-    db.query("SELECT COUNT(*) AS total FROM product",callback);
+    db.query("SELECT COUNT(*) AS total FROM product",(err,results)=>{
+        if(err) return callback(err,null);
+        callback(null,results);
+    });
 };
 
 exports.getCategories = (callback)=>{
@@ -51,8 +54,9 @@ exports.update = (id,data,callback)=>{
     );
 };
 
-exports.delete = (id,callback)=>{
+exports.deleteById = (id,callback)=>{
     db.query(
+       
         "DELETE FROM product WHERE id=?",
         [id],
         callback

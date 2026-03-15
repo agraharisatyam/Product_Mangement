@@ -28,10 +28,20 @@ exports.update = (id,name,callback)=>{
     );
 };
 
-exports.delete = (id,callback)=>{
+exports.deleteById = (id, callback) => {
+
     db.query(
-        "DELETE FROM category WHERE id=?",
+        "DELETE FROM product WHERE category_id=?",
         [id],
-        callback
+        (err) => {
+
+            if (err) return callback(err);
+            db.query(
+                "DELETE FROM category WHERE id=?",
+                [id],
+                callback
+            );
+        }
     );
+
 };
